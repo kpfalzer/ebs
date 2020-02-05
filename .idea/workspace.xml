@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../gblibx/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gblibx/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gblibx/gblibx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../gblibx/gblibx.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/TimeWheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/TimeWheel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Update.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,14 +24,16 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../gblibx" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XBGveDRpwhB3USwgwNJ0F6TLwR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -123,6 +128,16 @@
           <url>file://$PROJECT_DIR$/src/ebs/TimeWheel.java</url>
           <line>47</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

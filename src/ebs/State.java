@@ -29,7 +29,7 @@ package ebs;
 
 public class State<T> extends Signal<T> implements Update {
     public State(T initial) {
-        __value = initial;
+        super.set(initial);
     }
 
     /**
@@ -53,12 +53,8 @@ public class State<T> extends Signal<T> implements Update {
         return get();
     }
 
-    public T get() {
-        return __value;
-    }
-
     public void update(Future f) {
-        __value = f.get();
+        super.set(f.get());
         setFuture(null);
     }
 
@@ -72,7 +68,6 @@ public class State<T> extends Signal<T> implements Update {
         __delta = future;
     }
 
-    private T __value;
     /**
      * Likely we'll be updating deltaQ more than realQ, so optimize by keeping reference
      * here, so don't have to search in deltaQ.

@@ -28,6 +28,10 @@
 package ebs;
 
 public interface Update extends Fanout {
+    /**
+     * Update with future value.
+     * @param f future value.
+     */
     public void update(Future f);
 
     /**

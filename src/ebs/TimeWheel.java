@@ -55,7 +55,6 @@ public class TimeWheel {
         final ArrayList<Future> q = DeltaQueue.theOne();
         if (q.isEmpty()) return false;
         __fanout(__update(q));
-        q.clear();
         return true;
     }
 
@@ -66,11 +65,12 @@ public class TimeWheel {
         return futures;
     }
 
-    private ArrayList<Future> __fanout(ArrayList<Future> futures) {
-        for (Future f : futures) {
-            f.fanout();
+    private void __fanout(ArrayList<Future> futures) {
+        //since we could grow while fanout
+        int n = futures.size();
+        while (0 < n--) {
+            futures.remove(0).fanout();
         }
-        return futures;
     }
 
     private TimeWheel() {
