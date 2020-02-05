@@ -2,17 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Future.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Future.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Signal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Signal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/SimTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/SimTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Source.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Source.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ebs/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ebs/TimeWheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/TimeWheel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Update.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ebs/ProcessTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/ProcessTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="224" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,7 +43,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
@@ -62,7 +68,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android JUnit.ProcessTest.process">
+    <configuration name="ProcessTest.process" type="AndroidJUnit" temporary="true" nameIsGenerated="true">
+      <module name="ebs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ebs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ebs" />
+      <option name="MAIN_CLASS_NAME" value="ebs.ProcessTest" />
+      <option name="METHOD_NAME" value="process" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProcessTest.process" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ebs" />
       <extension name="coverage">
@@ -81,6 +103,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.ProcessTest.process" />
         <item itemvalue="JUnit.ProcessTest.process" />
       </list>
     </recent_temporary>
@@ -112,34 +135,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ebs/TimeWheel.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="SimTime.theOne()" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ebs$ProcessTest_process.ic" NAME="ProcessTest.process Coverage Results" MODIFIED="1580942185681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ebs.*</FILTER>
+    </SUITE>
   </component>
 </project>

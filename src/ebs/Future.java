@@ -37,7 +37,7 @@ import static gblibx.Util.*;
 
     /*package*/ <T> T get() {
         final T val = downcast(__next);
-        invariant(isNonNull(val));
+        //todo: ok? invariant(isNonNull(val));
         set(null);
         return val;
     }

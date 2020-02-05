@@ -28,17 +28,37 @@
 package ebs;
 
 import java.util.ArrayList;
-import java.util.Map;
+
+import static gblibx.Util.acceptIfNotNull;
 
 public class TimeWheel {
     public static TimeWheel theOne() {
         return __THE_ONE;
     }
 
+    public interface CallBack {
+        public void endOfCycle(TimeWheel tw);
+    }
+
     public static long run() {
+        return run(null);
+    }
+
+    public static long run(CallBack cb) {
         while (theOne().__updateTimed()) {
             theOne().__updateDelta();
+            acceptIfNotNull(cb, (x) -> {
+                x.endOfCycle(theOne());
+            });
         }
+        return SimTime.now();
+    }
+
+    public String getTime() {
+        return SimTime.theOne().toString();
+    }
+
+    public long now() {
         return SimTime.now();
     }
 
@@ -51,11 +71,13 @@ public class TimeWheel {
         return true;
     }
 
-    private boolean __updateDelta() {
-        final ArrayList<Future> q = DeltaQueue.theOne();
-        if (q.isEmpty()) return false;
-        __fanout(__update(q));
-        return true;
+    private void __updateDelta() {
+        //signal fanout can cause deltaQ to be updated, so loop until no more.
+        while (!DeltaQueue.theOne().isEmpty()) {
+            SimTime.theOne().incrDelta();
+            final ArrayList<Future> q = DeltaQueue.theOne();
+            __fanout(__update(q));
+        }
     }
 
     private ArrayList<Future> __update(ArrayList<Future> futures) {

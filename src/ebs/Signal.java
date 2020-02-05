@@ -29,12 +29,12 @@ package ebs;
 
 import java.util.ArrayList;
 
-import static gblibx.Util.downcast;
+import static gblibx.Util.*;
 import static java.util.Objects.isNull;
 
-public class Signal<T> implements Source<T>, Fanout {
+public class Signal<T> implements Source<T>, Update, Fanout {
     public T get() {
-        return __source.get();
+        return isNonNull(__source) ? __source.get() : null;
     }
 
     @Override
@@ -45,7 +45,21 @@ public class Signal<T> implements Source<T>, Fanout {
         __sensitivities.add(p);
     }
 
-    public T set(T val) {
+    /**
+     * Set next value in deltaQ.
+     *
+     * @param next next value.
+     * @return current value.
+     */
+    public T set(T next) {
+        //no need to redux a null
+        if (isNonNull(next) || isNonNull(get())) {
+            DeltaQueue.add(this, next);
+        }
+        return get();
+    }
+
+    protected T _set(T val) {
         if (isNull(__source)) {
             __source = new Value<T>(val);
             return __source.get();
@@ -57,10 +71,33 @@ public class Signal<T> implements Source<T>, Fanout {
 
     @Override
     public void fanout() {
-        for (Process p : __sensitivities) {
-            p.process();
-        }
+        acceptIfNotNull(__sensitivities, (processes) ->{
+            for (Process p : processes) {
+                p.process();
+            }
+        });
     }
+
+    public void update(Future f) {
+        _set(f.get());
+        setFuture(null);
+    }
+
+    @Override
+    public Future getFuture() {
+        return __delta;
+    }
+
+    @Override
+    public void setFuture(Future future) {
+        __delta = future;
+    }
+
+    /**
+     * Likely we'll be updating deltaQ more than realQ, so optimize by keeping reference
+     * here, so don't have to search in deltaQ.
+     */
+    private Future __delta;
 
     public static class Value<T> implements Source<T> {
         public Value(T val) {

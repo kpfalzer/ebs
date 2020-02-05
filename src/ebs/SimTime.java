@@ -37,8 +37,22 @@ public class SimTime {
         return theOne().getTime();
     }
 
+    public static long delta() {
+        return theOne().getDelta();
+    }
+
     private SimTime(long start) {
         __time = start;
+        __resetDelta();
+    }
+
+    private void __resetDelta() {
+        __delta = 0;
+    }
+
+    /*package*/ long incrDelta() {
+        ++__delta;
+        return __delta;
     }
 
     private SimTime() {
@@ -47,14 +61,23 @@ public class SimTime {
 
     /*package*/ long advance(long to) {
         __time = to;
+        __resetDelta();
         return __time;
+    }
+
+    public String toString() {
+        return getTime() + "." + getDelta();
     }
 
     public long getTime() {
         return __time;
     }
 
-    private long __time;
+    public long getDelta() {
+        return __delta;
+    }
+
+    private long __time, __delta;
 
     private static final SimTime __THE_ONE = new SimTime();
 }

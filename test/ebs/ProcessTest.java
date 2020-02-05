@@ -42,6 +42,18 @@ class ProcessTest {
     Signal<Integer> aPlusB = new Signal<>();
     Process p1, p2, p3, p4;
 
+    interface FunctionOf2<T1, T2, R> {
+        R apply(T1 a, T2 b);
+    }
+
+    static <T1, T2, R> R eval(T1 a, T2 b, FunctionOf2<T1, T2, R> func) {
+        try {
+            return func.apply(a, b);
+        } catch (NullPointerException ex) {
+            return null;
+        }
+    }
+
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         p1 = new Process(a, b) {
@@ -53,7 +65,7 @@ class ProcessTest {
         p2 = new Process(aPlusB, c) {
             @Override
             public void process() {
-                z.set(aPlusB.get() + c.get());
+                z.set(eval(aPlusB.get(), c.get(), (a,b)-> a+b));
             }
         };
         p3 = new Process(clk) {
@@ -76,7 +88,12 @@ class ProcessTest {
 
     @Test
     void process() {
-        long end = TimeWheel.run();
-        System.out.println("end time="+end);
+        long end = TimeWheel.run((cb)->{
+            String ts = cb.getTime();
+            long now = cb.now();
+            int z = this.z.get();
+            int aPlusB = this.aPlusB.get();
+        });
+        System.out.println("end time=" + end);
     }
 }

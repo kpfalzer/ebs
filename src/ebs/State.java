@@ -27,19 +27,9 @@
 
 package ebs;
 
-public class State<T> extends Signal<T> implements Update {
+public class State<T> extends Signal<T> {
     public State(T initial) {
-        super.set(initial);
-    }
-
-    /**
-     * Set next value in deltaQ.
-     * @param next next value.
-     * @return current value.
-     */
-    public T set(T next) {
-        DeltaQueue.add(this, next);
-        return get();
+        _set(initial);
     }
 
     /**
@@ -53,24 +43,4 @@ public class State<T> extends Signal<T> implements Update {
         return get();
     }
 
-    public void update(Future f) {
-        super.set(f.get());
-        setFuture(null);
-    }
-
-    @Override
-    public Future getFuture() {
-        return __delta;
-    }
-
-    @Override
-    public void setFuture(Future future) {
-        __delta = future;
-    }
-
-    /**
-     * Likely we'll be updating deltaQ more than realQ, so optimize by keeping reference
-     * here, so don't have to search in deltaQ.
-     */
-    private Future __delta;
 }
