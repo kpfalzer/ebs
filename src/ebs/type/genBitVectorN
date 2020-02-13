@@ -1,0 +1,48 @@
+#!/bin/csh -f
+
+set START=1
+set END=64
+
+set i=$START
+while (${i} <= $END)
+	cat <<L1
+    public static class N${i} extends BitVector {
+        public N${i}() {
+            super(${i});
+        }
+    }
+L1
+	@ i++
+end
+echo "}"
+
+set i=$START
+while (${i} <= $END)
+	cat <<L2
+    public static class N${i} extends BitVectorSignal<BitVector.N${i}> {
+        public BitVector.N${i} _getUninitialized() {
+            return super._getUninitialized(${i});
+        }
+    }
+L2
+	@ i++
+end
+echo "}"
+
+set i=$START
+while (${i} <= $END)
+	cat <<L3
+    public static class N${i} extends BitVectorState<BitVector.N${i}> {
+        public N${i}() {
+            this(BitVector.random(${i}));
+        }
+
+        public N${i}(BitVector.N${i} init) {
+            super(init);
+        }
+    }
+L3
+	@ i++
+end
+echo "}"
+

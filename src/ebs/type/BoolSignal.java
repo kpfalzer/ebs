@@ -34,5 +34,4 @@ public class BoolSignal extends Signal<Boolean> {
     public Boolean _getUninitialized() {
         return Random.theOne().nextBoolean();
     }
-
 }
