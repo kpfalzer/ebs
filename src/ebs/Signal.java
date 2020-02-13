@@ -60,8 +60,9 @@ public class Signal<T> implements Source<T>, Update, Fanout {
      * @return current value.
      */
     public T set(T next) {
-        //no need to redux a null
-        if (isNonNull(next) || isNonNull(get())) {
+        //lets not allow null: use Random instead
+        invariant(isNonNull(next));
+        if (! next.equals(get())) {
             DeltaQueue.add(this, next);
         }
         return get();
