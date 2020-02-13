@@ -27,8 +27,10 @@
 
 package ebs;
 
+import ebs.type.IntSignal;
 import org.junit.jupiter.api.Test;
 
+import static ebs.Util.eval;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProcessTest {
@@ -39,20 +41,8 @@ class ProcessTest {
             b = new State<>(0),
             c = new State<>(0);
     Output<Integer> z = new Output<>();
-    Signal<Integer> aPlusB = new Signal<>();
+    IntSignal aPlusB = new IntSignal();
     Process p1, p2, p3, p4;
-
-    interface FunctionOf2<T1, T2, R> {
-        R apply(T1 a, T2 b);
-    }
-
-    static <T1, T2, R> R eval(T1 a, T2 b, FunctionOf2<T1, T2, R> func) {
-        try {
-            return func.apply(a, b);
-        } catch (NullPointerException ex) {
-            return null;
-        }
-    }
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -65,7 +55,8 @@ class ProcessTest {
         p2 = new Process(aPlusB, c) {
             @Override
             public void process() {
-                z.set(eval(aPlusB.get(), c.get(), (a,b)-> a+b));
+                //z.set(eval(aPlusB.get(), c.get(), (a,b)-> a+b));
+                z.set(aPlusB.get() + c.get());
             }
         };
         p3 = new Process(clk) {
@@ -88,7 +79,7 @@ class ProcessTest {
 
     @Test
     void process() {
-        long end = TimeWheel.run((cb)->{
+        long end = TimeWheel.run((cb) -> {
             String ts = cb.getTime();
             long now = cb.now();
             int z = this.z.get();

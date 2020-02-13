@@ -27,21 +27,16 @@
 
 package ebs;
 
-public class State<T> extends Signal<T> {
-    public State(T initial) {
-        _set(initial);
+public class Util {
+    public interface FunctionOf2<T1, T2, R> {
+        R apply(T1 a, T2 b);
     }
 
-    /**
-     * Set next value in TimedQ.
-     * @param incr incr future time.
-     * @param next next value.
-     * @return current value.
-     */
-    public T set(int incr, T next) {
-        TimedQueue.add(incr, this, next);
-        return get();
+    public static <T1, T2, R> R eval(T1 a, T2 b, FunctionOf2<T1, T2, R> func) {
+        try {
+            return func.apply(a, b);
+        } catch (NullPointerException ex) {
+            return null;
+        }
     }
-
 }
-

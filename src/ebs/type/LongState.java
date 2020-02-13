@@ -25,23 +25,17 @@
  *
  */
 
-package ebs;
+package ebs.type;
 
-public class State<T> extends Signal<T> {
-    public State(T initial) {
-        _set(initial);
+import ebs.Random;
+import ebs.State;
+
+public class LongState extends State<Long> {
+    public LongState(Long initial) {
+        super(initial);
     }
 
-    /**
-     * Set next value in TimedQ.
-     * @param incr incr future time.
-     * @param next next value.
-     * @return current value.
-     */
-    public T set(int incr, T next) {
-        TimedQueue.add(incr, this, next);
-        return get();
+    public LongState() {
+        this(Random.theOne().nextLong());
     }
-
 }
-

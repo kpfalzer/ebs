@@ -34,7 +34,15 @@ import static java.util.Objects.isNull;
 
 public class Signal<T> implements Source<T>, Update, Fanout {
     public T get() {
-        return isNonNull(__source) ? __source.get() : null;
+        return isNonNull(__source) ? __source.get() : _getUninitialized();
+    }
+
+    /**
+     * Subclass should REALLY implement to prevent nulls in evaluations.
+     * @return uninitialized value.
+     */
+    protected T _getUninitialized() {
+        return null;
     }
 
     @Override

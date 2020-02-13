@@ -27,21 +27,20 @@
 
 package ebs;
 
-public class State<T> extends Signal<T> {
-    public State(T initial) {
-        _set(initial);
+public class Random extends java.util.Random {
+    public static Random theOne() {
+        return __THE_ONE;
     }
 
-    /**
-     * Set next value in TimedQ.
-     * @param incr incr future time.
-     * @param next next value.
-     * @return current value.
-     */
-    public T set(int incr, T next) {
-        TimedQueue.add(incr, this, next);
-        return get();
+    private Random(long seed) {
+        super(seed);
     }
 
+    private static final long __SEED;
+    private static final Random __THE_ONE;
+
+    static {
+        __SEED = 12345678L;
+        __THE_ONE = new Random(__SEED);
+    }
 }
-
