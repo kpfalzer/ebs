@@ -28,7 +28,7 @@
 package ebs;
 
 public interface Source<T> {
-    T get();
+    public T get();
 
     default void addSensitivity(Process p) {
     }

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import static gblibx.Util.*;
 import static java.util.Objects.isNull;
 
-public class Signal<T> implements Source<T>, Update, Fanout {
+public class Signal<T> implements Source<T>, Output<T>, Update, Fanout {
     public T get() {
         return isNonNull(__source) ? __source.get() : _getUninitialized();
     }
@@ -126,9 +126,13 @@ public class Signal<T> implements Source<T>, Update, Fanout {
         }
     }
 
-    /*package*/ void setSource(Source<T> source) {
+    private void __setSource(Source<T> source) {
         invariant(isNull(__source));
         __source = source;
+    }
+
+    public void connect(Output<T> output) {
+        __setSource(output.asSignal());
     }
 
     private Source<T> __source;

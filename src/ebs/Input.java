@@ -27,19 +27,5 @@
 
 package ebs;
 
-/**
- * Input reference a source.
- * @param <T>
- */
-public class Input<T> implements Source<T> {
-    @Override
-    public T get() {
-        return __source.get();
-    }
-
-    public void setSource(Source<T> src) {
-        __source = src;
-    }
-
-    private Source<T>   __source;
+public interface Input<T> extends Source<T> {
 }

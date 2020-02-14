@@ -30,8 +30,6 @@ package ebs;
 import ebs.type.*;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
-
 import static gblibx.Util.invariant;
 
 class AluTest {
@@ -56,9 +54,9 @@ class AluTest {
             this.waddr0 = waddr0;
             this.din0 = din0;
             this.raddr0 = raddr0;
-            dout0.setSource(this.dout0);
+            this.dout0.connect(dout0);
             this.raddr1 = raddr1;
-            dout1.setSource(this.dout1);
+            this.dout1.connect(dout1);
             __mem = new Integer[1 << this.waddr0.get().size()];
             __randomize();
             __p1 = new Process(clk) {
@@ -120,7 +118,7 @@ class AluTest {
             this.opcode = opcode;
             this.a = a;
             this.b = b;
-            z.setSource(this.z);
+            this.z.connect(z);
             __p1 = new Process(clk) {
                 @Override
                 public void process() {
@@ -218,6 +216,7 @@ class AluTest {
             String ts = cb.getTime();
             long now = cb.now();
             //todo
+            boolean xbreak = true;
         });
         System.out.println("end time=" + end);
     }

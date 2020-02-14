@@ -27,9 +27,12 @@
 
 package ebs;
 
-/**
- * Output is a signal.
- * @param <T>
- */
-public class Output<T> extends Signal<T> {
+import static gblibx.Util.downcast;
+
+public interface Output<T> extends Input<T> {
+    public T set(T next);
+
+    public default Signal<T> asSignal() {
+        return downcast(this);
+    }
 }

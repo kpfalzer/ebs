@@ -40,7 +40,7 @@ class ProcessTest {
     State<Integer> a = new State<>(0),
             b = new State<>(0),
             c = new State<>(0);
-    Output<Integer> z = new Output<>();
+    Output<Integer> z = new Signal<>();
     IntSignal aPlusB = new IntSignal();
     Process p1, p2, p3, p4;
 
@@ -84,6 +84,7 @@ class ProcessTest {
             long now = cb.now();
             int z = this.z.get();
             int aPlusB = this.aPlusB.get();
+            boolean xbreak = true;
         });
         System.out.println("end time=" + end);
     }
