@@ -62,7 +62,7 @@ class ProcessTest {
         p3 = new Process(clk) {
             @Override
             public void process() {
-                clk.set(T, true);
+                clk.set(T, !clk.get());
             }
         };
         p4 = new Process(clk) {

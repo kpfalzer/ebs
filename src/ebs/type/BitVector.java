@@ -32,8 +32,33 @@ import ebs.Random;
 import java.util.BitSet;
 
 import static gblibx.Util.downcast;
+import static gblibx.Util.invariant;
 
 public class BitVector extends BitSet {
+    public int toInt() {
+        invariant(length() <= Integer.SIZE);
+        return downcast(toLongArray()[0]);
+    }
+
+    public long toLong() {
+        invariant(length() <= Long.SIZE);
+        return toLongArray()[0];
+    }
+
+    public BitVector valueOf(int v) {
+        return valueOf(Integer.toUnsignedLong(v));
+    }
+
+    public BitVector valueOf(long v) {
+        invariant(length() <= Long.SIZE);
+        for (int i = 0; i < length(); ++i) {
+            boolean b = (0 != (0x01 & v));
+            set(i, b);
+            v = v >> 1;
+        }
+        return this;
+    }
+
     private BitVector(int nbits) {
         super(nbits);
     }

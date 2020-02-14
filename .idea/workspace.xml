@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ebs/type/BitVector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ebs/type/BitVectorState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/ebs/AluTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/type/BoolSignal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BoolSignal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Signal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Signal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ebs/ProcessTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/ProcessTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,11 +52,12 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ebs" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ebs.type" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ebs" />
+      <recent name="ebs.type" />
     </key>
   </component>
   <component name="RunDashboard">

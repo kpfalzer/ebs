@@ -126,6 +126,11 @@ public class Signal<T> implements Source<T>, Update, Fanout {
         }
     }
 
+    /*package*/ void setSource(Source<T> source) {
+        invariant(isNull(__source));
+        __source = source;
+    }
+
     private Source<T> __source;
     //todo: needed? private ArrayList<Sink<T>> __fanouts;
     private ArrayList<Process> __sensitivities;
