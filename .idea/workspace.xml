@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Output.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Signal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Signal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Sink.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Source.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Source.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/TimeWheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/TimeWheel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/ebs/AluTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/AluTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ebs/ProcessTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/ProcessTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

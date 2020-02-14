@@ -143,6 +143,7 @@ class AluTest {
         private final Process __p1;
     }
 
+    // Encapsulate opcode
     static class Opcode {
         Opcode(Alu.EOp aluOp, boolean rfSelectImmed, boolean rfWen0,
                int rfWaddr0, int rfRaddr0, int rfAddr1, int immed) {
@@ -159,9 +160,37 @@ class AluTest {
         final boolean rfSelectImmed, rfWen0;
         final int rfWaddr0, rfRaddr0, rfRaddr1;
         final int immed;
+
+        static class State extends ebs.State<Opcode> {
+            private static Opcode __X = new Opcode(
+                    Alu.EOp.eUnknown,
+                    Random.theOne().nextBoolean(),
+                    Random.theOne().nextBoolean(),
+                    Random.theOne().nextInt(),
+                    Random.theOne().nextInt(),
+                    Random.theOne().nextInt(),
+                    Random.theOne().nextInt()
+            );
+
+            public State(Opcode initial) {
+                super(initial);
+            }
+
+            public State() {
+                this(__X);
+            }
+        }
     }
 
-    static class Dut {
+    static final Opcode program[] = {
+            new Opcode(Alu.EOp.eUnknown, true, true, 0, 0, 0, 1234),
+            new Opcode(Alu.EOp.eUnknown, false, false, 0, 0, 0, 1234)
+
+    };
+
+    int pc = 0;
+
+    class Dut {
         Input<Boolean> clk;
 
         Alu.EOpSignal aluOp = new Alu.EOpSignal();
@@ -176,8 +205,18 @@ class AluTest {
         IntSignal z = new IntSignal();
         IntSignal aluA = new IntSignal();
         IntSignal aluB = new IntSignal();
-        //
+
+        // mux output: alu.z or immed
+        IntSignal rfDin = new IntSignal();
+
+        // opcode pipeline
+        Opcode.State opcode = new Opcode.State();
+
+        // instances
         Alu alu = new Alu(clk, aluOp, aluA, aluB, z);
+        Regfile2R1W<BitVector.N5> rf = new Regfile2R1W<>(
+                clk, rfWen0, rfWaddr0,
+                rfDin, rfRaddr0, aluA, rfRaddr1, aluB);
 
         private BitVector.N5 __getAddr(int addr) {
             BitVector.N5 xaddr = new BitVector.N5();
@@ -195,18 +234,21 @@ class AluTest {
             immed.set(opcode.immed);
         }
 
-        static final Opcode ops[] = {
-                new Opcode(Alu.EOp.eUnknown, true, true, 0, 0, 0, 1234),
-                new Opcode(Alu.EOp.eUnknown, false, false, 0, 0, 0, 1234)
-
+        Process __p1 = new Process(clk) {
+            @Override
+            public void process() {
+                opcode.set(program[pc]);
+                __apply(opcode.get());
+                rfDin.set((rfSelectImmed.get()) ? immed.get() : z.get());
+                ++pc;
+            }
         };
-
 
     }
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        //initial
+        //initial: 1st realQ event
         clk.set(0, true);
     }
 
@@ -215,7 +257,7 @@ class AluTest {
         long end = TimeWheel.run((cb) -> {
             String ts = cb.getTime();
             long now = cb.now();
-            //todo
+            if (pc > program.length) TimeWheel.stop();
             boolean xbreak = true;
         });
         System.out.println("end time=" + end);

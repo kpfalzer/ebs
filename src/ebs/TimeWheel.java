@@ -40,18 +40,32 @@ public class TimeWheel {
         public void endOfCycle(TimeWheel tw);
     }
 
+    private boolean __stop = false;
+
+    private void __stop() {
+        __stop = true;
+    }
+
+    public static void stop() {
+        theOne().__stop();
+    }
+
     public static long run() {
         return run(null);
     }
 
-    public static long run(CallBack cb) {
-        while (theOne().__updateTimed()) {
-            theOne().__updateDelta();
+    private long __run(CallBack cb) {
+        while (__stop && __updateTimed()) {
+            __updateDelta();
             acceptIfNotNull(cb, (x) -> {
-                x.endOfCycle(theOne());
+                x.endOfCycle(this);
             });
         }
         return SimTime.now();
+    }
+
+    public static long run(CallBack cb) {
+        return theOne().__run(cb);
     }
 
     public String getTime() {
