@@ -55,7 +55,7 @@ public class TimeWheel {
     }
 
     private long __run(CallBack cb) {
-        while (__stop && __updateTimed()) {
+        while (!__stop && __updateTimed()) {
             __updateDelta();
             acceptIfNotNull(cb, (x) -> {
                 x.endOfCycle(this);

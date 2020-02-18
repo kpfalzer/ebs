@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Signal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Signal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ebs/TimeWheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/TimeWheel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/ebs/AluTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/AluTest.java" afterDir="false" />
     </list>
@@ -70,7 +71,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android JUnit.ProcessTest.process">
+  <component name="RunManager" selected="JUnit.AluTest.process">
     <configuration name="ProcessTest.process" type="AndroidJUnit" temporary="true" nameIsGenerated="true">
       <module name="ebs" />
       <extension name="coverage">
@@ -81,6 +82,22 @@
       </extension>
       <option name="PACKAGE_NAME" value="ebs" />
       <option name="MAIN_CLASS_NAME" value="ebs.ProcessTest" />
+      <option name="METHOD_NAME" value="process" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AluTest.process" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ebs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ebs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ebs" />
+      <option name="MAIN_CLASS_NAME" value="ebs.AluTest" />
       <option name="METHOD_NAME" value="process" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -105,8 +122,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android JUnit.ProcessTest.process" />
+        <item itemvalue="JUnit.AluTest.process" />
         <item itemvalue="JUnit.ProcessTest.process" />
+        <item itemvalue="Android JUnit.ProcessTest.process" />
       </list>
     </recent_temporary>
   </component>
@@ -146,6 +164,16 @@
           <url>file://$PROJECT_DIR$/test/ebs/ProcessTest.java</url>
           <line>86</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
+          <line>260</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

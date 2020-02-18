@@ -191,7 +191,7 @@ class AluTest {
     int pc = 0;
 
     class Dut {
-        Input<Boolean> clk;
+        //use global clk: Input<Boolean> clk;
 
         Alu.EOpSignal aluOp = new Alu.EOpSignal();
         BoolSignal rfSelectImmed = new BoolSignal();
@@ -254,6 +254,7 @@ class AluTest {
 
     @Test
     void process() {
+        final Dut dut = new Dut();
         long end = TimeWheel.run((cb) -> {
             String ts = cb.getTime();
             long now = cb.now();

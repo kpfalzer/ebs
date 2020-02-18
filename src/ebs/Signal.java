@@ -126,8 +126,10 @@ public class Signal<T> implements Source<T>, Output<T>, Update, Fanout {
         }
     }
 
-    private void __setSource(Source<T> source) {
-        invariant(isNull(__source));
+    private void __setSource(Signal<T> source) {
+        invariant(isNull(source.__source));
+        final T nowVal = (isNonNull(__source)) ? get() : null;
+        source._set(nowVal);
         __source = source;
     }
 
