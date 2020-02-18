@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/Signal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Signal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/TimeWheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/TimeWheel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVectorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVectorState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/ebs/AluTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/AluTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -171,9 +173,14 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ebs/type/BitVector.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

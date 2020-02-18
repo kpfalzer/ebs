@@ -57,7 +57,7 @@ class AluTest {
             this.dout0.connect(dout0);
             this.raddr1 = raddr1;
             this.dout1.connect(dout1);
-            __mem = new Integer[1 << this.waddr0.get().size()];
+            __mem = new Integer[1 << this.waddr0.get().nbits];
             __randomize();
             __p1 = new Process(clk) {
                 @Override
@@ -196,9 +196,9 @@ class AluTest {
         Alu.EOpSignal aluOp = new Alu.EOpSignal();
         BoolSignal rfSelectImmed = new BoolSignal();
         BoolSignal rfWen0 = new BoolSignal();
-        BitVectorSignal<BitVector.N5> rfWaddr0 = new BitVectorSignal<>();
-        BitVectorSignal<BitVector.N5> rfRaddr0 = new BitVectorSignal<>();
-        BitVectorSignal<BitVector.N5> rfRaddr1 = new BitVectorSignal<>();
+        BitVectorSignal.N5 rfWaddr0 = new BitVectorSignal.N5();
+        BitVectorSignal.N5 rfRaddr0 = new BitVectorSignal.N5();
+        BitVectorSignal.N5 rfRaddr1 = new BitVectorSignal.N5();
         IntSignal immed = new IntSignal();
         //
         //connections

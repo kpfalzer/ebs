@@ -19,9 +19,9 @@ echo "}"
 set i=$START
 while (${i} <= $END)
 	cat <<L2
-    public static class N${i} extends BitVectorSignal<BitVector.N${i}> {
+    public static class N${i} extends _BitVectorSignal<BitVector.N${i}> {
         public BitVector.N${i} _getUninitialized() {
-            return super._getUninitialized(${i});
+            return new BitVector.N${i}();
         }
     }
 L2
@@ -32,9 +32,9 @@ echo "}"
 set i=$START
 while (${i} <= $END)
 	cat <<L3
-    public static class N${i} extends BitVectorState<BitVector.N${i}> {
+    public static class N${i} extends _BitVectorState<BitVector.N${i}> {
         public N${i}() {
-            this(BitVector.random(${i}));
+            this(new BitVector.N${i}());
         }
 
         public N${i}(BitVector.N${i} init) {

@@ -37,7 +37,7 @@ import static gblibx.Util.invariant;
 public class BitVector extends BitSet {
     public int toInt() {
         invariant(length() <= Integer.SIZE);
-        return downcast(toLongArray()[0]);
+        return (int)(toLongArray()[0]);
     }
 
     public long toLong() {
@@ -59,20 +59,18 @@ public class BitVector extends BitSet {
         return this;
     }
 
+    public final int nbits;
+
     private BitVector(int nbits) {
         super(nbits);
+        this.nbits = nbits;
+        __randomize();
     }
 
-    public static <T extends BitVector> T create(int nbits) {
-        return downcast(new BitVector(nbits));
-    }
-
-    public static <T extends BitVector> T random(int nbits) {
-        T res = BitVector.create(nbits);
+    private void __randomize() {
         for (int i = 0; i < nbits; ++i) {
-            res.set(i, Random.theOne().nextBoolean());
+            set(i, Random.theOne().nextBoolean());
         }
-        return res;
     }
 
     public static class N1 extends BitVector {
