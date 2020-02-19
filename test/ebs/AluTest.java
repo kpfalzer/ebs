@@ -57,7 +57,7 @@ class AluTest {
             this.dout0.connect(dout0);
             this.raddr1 = raddr1;
             this.dout1.connect(dout1);
-            __mem = new Integer[1 << this.waddr0.get().nbits];
+            __mem = new Integer[1 << this.waddr0.get().nbits()];
             __randomize();
             __p1 = new Process(clk) {
                 @Override
@@ -237,10 +237,12 @@ class AluTest {
         Process __p1 = new Process(clk) {
             @Override
             public void process() {
-                opcode.set(program[pc]);
                 __apply(opcode.get());
                 rfDin.set((rfSelectImmed.get()) ? immed.get() : z.get());
-                ++pc;
+                if (pc < program.length) {
+                    opcode.set(program[pc]);
+                    ++pc;
+                }
             }
         };
 
@@ -258,7 +260,7 @@ class AluTest {
         long end = TimeWheel.run((cb) -> {
             String ts = cb.getTime();
             long now = cb.now();
-            if (pc > program.length) TimeWheel.stop();
+            if (now > 100) TimeWheel.stop();
             boolean xbreak = true;
         });
         System.out.println("end time=" + end);

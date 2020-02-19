@@ -8,8 +8,21 @@ while (${i} <= $END)
 	cat <<L1
     public static class N${i} extends BitVector {
         public N${i}() {
-            super(${i});
+            super();
         }
+
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = ${i};
+        private static final long __AND_MASK = ~(~0 << __N);
     }
 L1
 	@ i++

@@ -4,8 +4,6 @@
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVectorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVectorState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/ebs/AluTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/AluTest.java" afterDir="false" />
     </list>
@@ -169,7 +167,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>260</line>
+          <line>262</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -178,9 +176,24 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ebs/type/BitVector.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
+          <line>240</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

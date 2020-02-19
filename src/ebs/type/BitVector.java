@@ -29,20 +29,18 @@ package ebs.type;
 
 import ebs.Random;
 
-import java.util.BitSet;
-
 import static gblibx.Util.downcast;
 import static gblibx.Util.invariant;
 
-public class BitVector extends BitSet {
+public abstract class BitVector {
     public int toInt() {
-        invariant(length() <= Integer.SIZE);
-        return (int)(toLongArray()[0]);
+        invariant(nbits() <= Integer.SIZE);
+        return (int) toLong();
     }
 
     public long toLong() {
-        invariant(length() <= Long.SIZE);
-        return toLongArray()[0];
+        invariant(nbits() <= Long.SIZE);
+        return __val & _andMask();
     }
 
     public BitVector valueOf(int v) {
@@ -50,410 +48,1177 @@ public class BitVector extends BitSet {
     }
 
     public BitVector valueOf(long v) {
-        invariant(length() <= Long.SIZE);
-        for (int i = 0; i < length(); ++i) {
-            boolean b = (0 != (0x01 & v));
-            set(i, b);
-            v = v >> 1;
-        }
+        __val = v & _andMask();
         return this;
     }
 
-    public final int nbits;
-
-    private BitVector(int nbits) {
-        super(nbits);
-        this.nbits = nbits;
-        __randomize();
+    public boolean set(int i, boolean val) {
+        assert (i >= 0) && (i < nbits());
+        if (val) __val |= (0x01 << i);
+        else __val &= ~(0x01 << i);
+        return val;
     }
 
-    private void __randomize() {
-        for (int i = 0; i < nbits; ++i) {
-            set(i, Random.theOne().nextBoolean());
-        }
+    private long __val = 0;
+
+    public abstract int nbits();
+
+    protected abstract long _andMask();
+
+    private BitVector() {
+        __val = (Random.theOne().nextLong() & _andMask());
     }
 
     public static class N1 extends BitVector {
         public N1() {
-            super(1);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 1;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N2 extends BitVector {
         public N2() {
-            super(2);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 2;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N3 extends BitVector {
         public N3() {
-            super(3);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 3;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N4 extends BitVector {
         public N4() {
-            super(4);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 4;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N5 extends BitVector {
         public N5() {
-            super(5);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 5;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N6 extends BitVector {
         public N6() {
-            super(6);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 6;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N7 extends BitVector {
         public N7() {
-            super(7);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 7;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N8 extends BitVector {
         public N8() {
-            super(8);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 8;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N9 extends BitVector {
         public N9() {
-            super(9);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 9;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N10 extends BitVector {
         public N10() {
-            super(10);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 10;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N11 extends BitVector {
         public N11() {
-            super(11);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 11;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N12 extends BitVector {
         public N12() {
-            super(12);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 12;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N13 extends BitVector {
         public N13() {
-            super(13);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 13;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N14 extends BitVector {
         public N14() {
-            super(14);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 14;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N15 extends BitVector {
         public N15() {
-            super(15);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 15;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N16 extends BitVector {
         public N16() {
-            super(16);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 16;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N17 extends BitVector {
         public N17() {
-            super(17);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 17;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N18 extends BitVector {
         public N18() {
-            super(18);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 18;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N19 extends BitVector {
         public N19() {
-            super(19);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 19;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N20 extends BitVector {
         public N20() {
-            super(20);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 20;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N21 extends BitVector {
         public N21() {
-            super(21);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 21;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N22 extends BitVector {
         public N22() {
-            super(22);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 22;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N23 extends BitVector {
         public N23() {
-            super(23);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 23;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N24 extends BitVector {
         public N24() {
-            super(24);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 24;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N25 extends BitVector {
         public N25() {
-            super(25);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 25;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N26 extends BitVector {
         public N26() {
-            super(26);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 26;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N27 extends BitVector {
         public N27() {
-            super(27);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 27;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N28 extends BitVector {
         public N28() {
-            super(28);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 28;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N29 extends BitVector {
         public N29() {
-            super(29);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 29;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N30 extends BitVector {
         public N30() {
-            super(30);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 30;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N31 extends BitVector {
         public N31() {
-            super(31);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 31;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N32 extends BitVector {
         public N32() {
-            super(32);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 32;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N33 extends BitVector {
         public N33() {
-            super(33);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 33;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N34 extends BitVector {
         public N34() {
-            super(34);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 34;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N35 extends BitVector {
         public N35() {
-            super(35);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 35;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N36 extends BitVector {
         public N36() {
-            super(36);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 36;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N37 extends BitVector {
         public N37() {
-            super(37);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 37;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N38 extends BitVector {
         public N38() {
-            super(38);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 38;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N39 extends BitVector {
         public N39() {
-            super(39);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 39;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N40 extends BitVector {
         public N40() {
-            super(40);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 40;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N41 extends BitVector {
         public N41() {
-            super(41);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 41;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N42 extends BitVector {
         public N42() {
-            super(42);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 42;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N43 extends BitVector {
         public N43() {
-            super(43);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 43;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N44 extends BitVector {
         public N44() {
-            super(44);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 44;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N45 extends BitVector {
         public N45() {
-            super(45);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 45;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N46 extends BitVector {
         public N46() {
-            super(46);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 46;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N47 extends BitVector {
         public N47() {
-            super(47);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 47;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N48 extends BitVector {
         public N48() {
-            super(48);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 48;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N49 extends BitVector {
         public N49() {
-            super(49);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 49;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N50 extends BitVector {
         public N50() {
-            super(50);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 50;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N51 extends BitVector {
         public N51() {
-            super(51);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 51;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N52 extends BitVector {
         public N52() {
-            super(52);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 52;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N53 extends BitVector {
         public N53() {
-            super(53);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 53;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N54 extends BitVector {
         public N54() {
-            super(54);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 54;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N55 extends BitVector {
         public N55() {
-            super(55);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 55;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N56 extends BitVector {
         public N56() {
-            super(56);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 56;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N57 extends BitVector {
         public N57() {
-            super(57);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 57;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N58 extends BitVector {
         public N58() {
-            super(58);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 58;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N59 extends BitVector {
         public N59() {
-            super(59);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 59;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N60 extends BitVector {
         public N60() {
-            super(60);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 60;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N61 extends BitVector {
         public N61() {
-            super(61);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 61;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N62 extends BitVector {
         public N62() {
-            super(62);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 62;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N63 extends BitVector {
         public N63() {
-            super(63);
+            super();
         }
-    }
 
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 63;
+        private static final long __AND_MASK = ~(~0 << __N);
+    }
     public static class N64 extends BitVector {
         public N64() {
-            super(64);
+            super();
         }
+
+        @Override
+        public int nbits() {
+            return __N;
+        }
+
+        @Override
+        protected long _andMask() {
+            return __AND_MASK;
+        }
+
+        private static final int __N = 64;
+        private static final long __AND_MASK = ~(~0 << __N);
     }
 }
