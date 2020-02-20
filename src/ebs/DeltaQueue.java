@@ -46,6 +46,7 @@ public class DeltaQueue extends ArrayList<Future> {
         if (isNull(future)) {
             future = new Future(update, val);
             super.add(future);
+            update.setFuture(future);
         } else {
             future.set(val);
         }

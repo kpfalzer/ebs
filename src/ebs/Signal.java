@@ -34,11 +34,15 @@ import static java.util.Objects.isNull;
 
 public class Signal<T> implements Source<T>, Output<T>, Update, Fanout {
     public T get() {
-        return isNonNull(__source) ? __source.get() : _getUninitialized();
+        if (isNull(__source)) {
+            __source = new Value<>(_getUninitialized());
+        }
+        return __source.get();
     }
 
     /**
      * Subclass should REALLY implement to prevent nulls in evaluations.
+     *
      * @return uninitialized value.
      */
     protected T _getUninitialized() {
@@ -62,7 +66,7 @@ public class Signal<T> implements Source<T>, Output<T>, Update, Fanout {
     public T set(T next) {
         //lets not allow null: use Random instead
         invariant(isNonNull(next));
-        if (! next.equals(get())) {
+        if (!next.equals(get())) {
             DeltaQueue.add(this, next);
         }
         return get();
@@ -80,7 +84,7 @@ public class Signal<T> implements Source<T>, Output<T>, Update, Fanout {
 
     @Override
     public void fanout() {
-        acceptIfNotNull(__sensitivities, (processes) ->{
+        acceptIfNotNull(__sensitivities, (processes) -> {
             for (Process p : processes) {
                 p.process();
             }

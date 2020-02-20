@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="be5d411e-83ce-4322-9b35-37a036637817" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/type/BitVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/BitVector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/type/genBitVectorN" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/DeltaQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/DeltaQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ebs/Signal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ebs/Signal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/ebs/AluTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ebs/AluTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -166,40 +166,32 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>262</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ebs/type/BitVectorSignal.java</url>
           <line>63</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="23" />
+          <line>265</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ebs/DeltaQueue.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/ebs/AluTest.java</url>
-          <line>240</line>
-          <option name="timeStamp" value="29" />
+          <line>70</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="SimTime.theOne()" language="JAVA" />
+        <watch expression="waddr0.get().toInt()" language="JAVA" />
+        <watch expression="din0.get()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

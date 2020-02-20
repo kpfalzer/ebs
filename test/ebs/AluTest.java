@@ -28,9 +28,11 @@
 package ebs;
 
 import ebs.type.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static gblibx.Util.invariant;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AluTest {
 
@@ -57,36 +59,36 @@ class AluTest {
             this.dout0.connect(dout0);
             this.raddr1 = raddr1;
             this.dout1.connect(dout1);
-            __mem = new Integer[1 << this.waddr0.get().nbits()];
+            mem = new Integer[1 << this.waddr0.get().nbits()];
             __randomize();
             __p1 = new Process(clk) {
                 @Override
                 public void process() {
                     //read before write
-                    dout0.set(__mem[raddr0.get().toInt()]);
-                    dout1.set(__mem[raddr1.get().toInt()]);
+                    dout0.set(mem[raddr0.get().toInt()]);
+                    dout1.set(mem[raddr1.get().toInt()]);
                     if (wen0.get()) {
-                        __mem[waddr0.get().toInt()] = din0.get();
+                        mem[waddr0.get().toInt()] = din0.get();
                     }
                 }
             };
         }
 
         private void __randomize() {
-            for (int i = 0; i < __mem.length; ++i) {
-                __mem[i] = Random.theOne().nextInt();
+            for (int i = 0; i < mem.length; ++i) {
+                mem[i] = Random.theOne().nextInt();
             }
         }
 
-        private final Input<Boolean> wen0;
-        private final Input<TADDR> waddr0;
-        private final Input<Integer> din0;
-        private final Input<TADDR> raddr0;
-        private final IntState dout0 = new IntState();
-        private final Input<TADDR> raddr1;
-        private final IntState dout1 = new IntState();
-        private final Integer[] __mem;
-        private final Process __p1;
+        public final Input<Boolean> wen0;
+        public final Input<TADDR> waddr0;
+        public final Input<Integer> din0;
+        public final Input<TADDR> raddr0;
+        public final IntState dout0 = new IntState();
+        public final Input<TADDR> raddr1;
+        public final IntState dout1 = new IntState();
+        public final Integer[] mem;
+        public final Process __p1;
     }
 
     /*
@@ -184,7 +186,8 @@ class AluTest {
 
     static final Opcode program[] = {
             new Opcode(Alu.EOp.eUnknown, true, true, 0, 0, 0, 1234),
-            new Opcode(Alu.EOp.eUnknown, false, false, 0, 0, 0, 1234)
+            new Opcode(Alu.EOp.eUnknown, true, true, 1, 0, 0, 5678),
+            new Opcode(Alu.EOp.eUnknown, false, false, 1, 0, 0, 0),
 
     };
 
@@ -194,12 +197,10 @@ class AluTest {
         //use global clk: Input<Boolean> clk;
 
         Alu.EOpSignal aluOp = new Alu.EOpSignal();
-        BoolSignal rfSelectImmed = new BoolSignal();
         BoolSignal rfWen0 = new BoolSignal();
         BitVectorSignal.N5 rfWaddr0 = new BitVectorSignal.N5();
         BitVectorSignal.N5 rfRaddr0 = new BitVectorSignal.N5();
         BitVectorSignal.N5 rfRaddr1 = new BitVectorSignal.N5();
-        IntSignal immed = new IntSignal();
         //
         //connections
         IntSignal z = new IntSignal();
@@ -226,19 +227,18 @@ class AluTest {
 
         private void __apply(Opcode opcode) {
             aluOp.set(opcode.aluOp);
-            rfSelectImmed.set(opcode.rfSelectImmed);
             rfWen0.set(opcode.rfWen0);
             rfWaddr0.set(__getAddr(opcode.rfWaddr0));
             rfRaddr0.set(__getAddr(opcode.rfRaddr0));
             rfRaddr1.set(__getAddr(opcode.rfRaddr1));
-            immed.set(opcode.immed);
+            rfDin.set((opcode.rfSelectImmed) ? opcode.immed : z.get());
+
         }
 
         Process __p1 = new Process(clk) {
             @Override
             public void process() {
                 __apply(opcode.get());
-                rfDin.set((rfSelectImmed.get()) ? immed.get() : z.get());
                 if (pc < program.length) {
                     opcode.set(program[pc]);
                     ++pc;
@@ -260,9 +260,11 @@ class AluTest {
         long end = TimeWheel.run((cb) -> {
             String ts = cb.getTime();
             long now = cb.now();
-            if (now > 100) TimeWheel.stop();
+            if (now > (pc * T)) TimeWheel.stop();
             boolean xbreak = true;
         });
         System.out.println("end time=" + end);
+        assertEquals(dut.rf.mem[0], 1234);
+        assertEquals(dut.rf.mem[1], 5678);
     }
 }
